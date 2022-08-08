@@ -1,7 +1,6 @@
 GIT_REV?=$$(git rev-parse --short HEAD)
-DATE?=$$(date -u +"%Y-%m-%dT%H:%M:%S")
 VERSION?=$$(git describe --tags --always)
-LDFLAGS="-s -w -X main.version=$(VERSION) -X main.sha=$(GIT_REV) -X main.date=$(DATE)"
+LDFLAGS="-s -w -X 'github.com/vaclav-dvorak/veribi-cli/cmd/veribi.version=$(VERSION)+$(GIT_REV)'"
 goos?=$$(go env GOOS)
 goarch?=$$(go env GOARCH)
 file:=veribi
@@ -20,14 +19,15 @@ default: help
 prepare: ## Download depencies and prepare dev env
 	@pre-commit install
 	@go mod download
+	@go mod tidy
 	@go mod vendor
 
 build:  ## Builds the cli binary
-	go build -trimpath -ldflags=$(LDFLAGS) -o ./bin/$(file) .
+	go build -trimpath -ldflags=$(LDFLAGS) -o ./bin/$(file) main.go
 
 build-ci: ## Optimized build for CI
 	@echo $(goos)/$(goarch)
-	go build -trimpath -ldflags=$(LDFLAGS) -o ./bin/$(file) .
+	go build -trimpath -ldflags=$(LDFLAGS) -o ./bin/$(file) main.go
 	@cp LICENSE bin/LICENSE
 	cd ./bin && tar -czf $(package).tar.gz ./$(file) ./LICENSE && cd ./..
 	@rm bin/LICENSE
