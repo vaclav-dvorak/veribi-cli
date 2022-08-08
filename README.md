@@ -1,2 +1,3 @@
 # veribi-cli
-Command line intereface for Veribi platform
+
+Command line interface for Veribi platform
