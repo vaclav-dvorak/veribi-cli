@@ -13,8 +13,9 @@ import (
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Initialize Veribi CLI",
+	Use:     "init",
+	Aliases: []string{"i"},
+	Short:   "Initialize Veribi CLI",
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Info("cmd init")
 
@@ -45,14 +46,14 @@ var initCmd = &cobra.Command{
 			log.Printf("Prompt failed %v\n", err)
 			return
 		}
-		viper.Set("password", pass)
-		viper.Set("sessionId", "")
+		viper.Set("pass", pass)
+		viper.Set("key", "")
 
 		if err := viper.WriteConfig(); err != nil {
 			log.Info(err)
 		}
 
-		fmt.Println("You're all set abnd can login now.")
+		fmt.Println("You're all set and can login now.")
 	},
 }
 

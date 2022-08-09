@@ -1,5 +1,5 @@
 GIT_REV?=$$(git rev-parse --short HEAD)
-VERSION?=$$(git describe --tags --always)
+VERSION?=$$(git describe --tags --abbrev=0)
 LDFLAGS="-s -w -X 'github.com/vaclav-dvorak/veribi-cli/cmd/veribi.version=$(VERSION)+$(GIT_REV)'"
 goos?=$$(go env GOOS)
 goarch?=$$(go env GOARCH)
