@@ -3,9 +3,17 @@
 
 ## [Unreleased]
 
+
+## [v0.0.3] - 2022-08-10
+
 ### Features
 
 - add windows binaries to release
+
+
+### Added
+
+- Add changelog
 
 
 ## [v0.0.2] - 2022-08-10
@@ -35,6 +43,7 @@
 
 ## [v0.0.1] - 2022-08-08
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...HEAD
+[v0.0.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.2...v0.0.3
 [v0.0.2]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.1...v0.0.2
 [v0.0.1]: https://github.com/vaclav-dvorak/veribi-cli/releases/tag/v0.0.1
