@@ -6,6 +6,37 @@ on:
       - "v*.*.*"
 
 jobs:
+  build:
+    name: Build binaries
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, darwin]
+        goarch: [amd64]
+        # exclude:
+        #   - goarch: "386"
+        #   - goos: darwin
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.18" # The Go version to download (if necessary) and use.
+
+      - name: Build binary ${{ matrix.goos }}/${{ matrix.goarch }}
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: make build-ci
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact_${{ matrix.goos }}_${{ matrix.goarch }}
+          path: veribi_${{ matrix.goos }}_${{ matrix.goarch }}.tar.gz
+
   release:
     name: Create new release
     runs-on: ubuntu-latest
@@ -21,42 +52,17 @@ jobs:
       - name: Generate a release notes
         run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref_name}}
 
+      - name: Download binaries
+        uses: actions/download-artifact@v2
+
+      - name: debug
+        run: ls -R
+
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           release_name: Release ${{ github.ref}}
-          # body_path: ${{ github.workspace }}-CHANGELOG.md
+          body_path: ${{ github.workspace }}-CHANGELOG.md
+          files: "*.tar.gz"
           prerelease: true
-          generate_release_notes: true
-
-  build:
-    name: Build binaries for release
-    needs: release
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        goos: [linux, darwin]
-        goarch: ["386", amd64]
-        exclude:
-          - goarch: "386"
-          - goos: darwin
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Build veribi binary
-        uses: wangyoucao577/go-release-action@v1.30
-        with:
-          release_tag: ${{ github.ref_name}}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          goos: ${{ matrix.goos }}
-          goarch: ${{ matrix.goarch }}
-          goversion: "1.18"
-          binary_name: "veribi"
-          build_command: "make build-ci"
-          asset_name: "veribi-${{ matrix.goos }}-${{ matrix.goarch }}"
-          extra_files: LICENSE
-          md5sum: false

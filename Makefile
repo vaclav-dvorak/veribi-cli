@@ -3,8 +3,12 @@ VERSION?=$$(git describe --tags --abbrev=0)
 LDFLAGS="-s -w -X 'github.com/vaclav-dvorak/veribi-cli/cmd/veribi.version=$(VERSION)+$(GIT_REV)'"
 goos?=$$(go env GOOS)
 goarch?=$$(go env GOARCH)
-file:=veribi
-package:=$(file)_$(goos)_$(goarch)
+file=veribi
+package=$(file)_$(goos)_$(goarch)
+
+ifeq ("$(goos)", "windows")
+	ext=.exe
+endif
 
 GREEN  := $(shell tput -Txterm setaf 2)
 YELLOW := $(shell tput -Txterm setaf 3)
@@ -26,7 +30,8 @@ build:  ## Builds the cli binary
 
 build-ci: ## Optimized build for CI
 	@echo $(goos)/$(goarch)
-	go build -trimpath -ldflags=$(LDFLAGS) -o ./$(file) main.go
+	go build -trimpath -ldflags=$(LDFLAGS) -o ./$(file)$(ext) main.go
+	tar -czf $(package).tar.gz ./$(file)$(ext) ./LICENSE
 
 ## Test:
 coverage:  ## Run test coverage suite
