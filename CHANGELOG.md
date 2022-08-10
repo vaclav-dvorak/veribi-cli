@@ -3,22 +3,28 @@
 
 ## [Unreleased]
 
-
 ## [v0.0.3] - 2022-08-10
 
-### Features
+### 🎉 Features
 
 - add windows binaries to release
 
-
-### Added
+### 📦 Added
 
 - Add changelog
 
+### 💥 Changed
+
+- Remove 386 arch from release
+
+### 🐞 Bug Fixes
+
+- Fix the executable extension on windows binaries
+- Fix release name generation in pipeline
 
 ## [v0.0.2] - 2022-08-10
 
-### Features
+### 🎉 Features
 
 - try to use single artifact
 - different apporcha to automatic release
@@ -28,8 +34,7 @@
 - add offers command
 - add "root" and "init" command
 
-
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - job dependency
 - try to point release by ref_name
@@ -40,8 +45,8 @@
 - add missing chglog config
 - pipeline validation error
 
-
 ## [v0.0.1] - 2022-08-08
+
 
 [Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...HEAD
 [v0.0.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.2...v0.0.3

@@ -21,11 +21,11 @@ options:
       - fix
       - refactor
     title_maps:
-      feat: Features
-      add: Added
-      change: Changed
-      fix: Bug Fixes
-      refactor: Code Refactoring
+      feat: 🎉 Features
+      add: 📦 Added
+      change: 💥 Changed
+      fix: 🐞 Bug Fixes
+      refactor: ♻ Code Refactoring
   header:
     pattern: "^(\\w*)\\:\\s(.*)$"
     pattern_maps:
