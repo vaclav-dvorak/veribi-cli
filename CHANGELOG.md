@@ -3,6 +3,11 @@
 
 ## [Unreleased]
 
+### 🎉 Features
+
+- New `update` command
+- New curl based install script
+
 ## [v0.0.4] - 2022-08-10
 
 ### 📦 Added
