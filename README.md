@@ -9,9 +9,8 @@ Command line interface for Veribi platform
 
 Get the latest Veribi CLI release:
 
-Linux/macOS manual download:
+Automatic install for Linux/macOS with curl. This script downloads the CLI and puts it in your `/usr/local/bin`
 
 ```sh
-# Downloads the CLI based on your OS/arch and puts it in /usr/local/bin
 curl -fsSL https://raw.githubusercontent.com/vaclav-dvorak/veribi-cli/master/scripts/install.sh | sh
 ```
