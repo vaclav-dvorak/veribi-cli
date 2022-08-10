@@ -27,3 +27,31 @@ jobs:
         with:
           release_name: Release ${{ github.ref}}
           body_path: ${{ github.workspace }}-CHANGELOG.md
+          prerelease: true
+
+  build:
+    name: Build binaries for release
+    needs: release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux]
+        goarch: [amd64]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Build veribi binary
+        uses: wangyoucao577/go-release-action@v1.30
+        with:
+          release_tag: ${{ github.ref}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          goos: ${{ matrix.goos }}
+          goarch: ${{ matrix.goarch }}
+          goversion: "1.18"
+          binary_name: "veribi"
+          build_command: "make build-ci"
+          asset_name: "veribi-${{ matrix.goos }}-${{ matrix.goarch }}"
+          extra_files: LICENSE
