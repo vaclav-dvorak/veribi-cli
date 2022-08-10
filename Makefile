@@ -1,13 +1,13 @@
-GIT_REV ?= $$(git rev-parse --short HEAD)
-VERSION ?= $$(git describe --tags --abbrev=0)
-LDFLAGS = "-s -w -X 'github.com/vaclav-dvorak/veribi-cli/cmd/veribi.version=$(VERSION)+$(GIT_REV)'"
-goos ?= $$(go env GOOS)
-goarch ?= $$(go env GOARCH)
-file = veribi
-package = $(file)_$(goos)_$(goarch)
-ext :=
+GIT_REV ?= $(shell git rev-parse --short HEAD)
+VERSION ?= $(shell git describe --tags --abbrev=0)
+LDFLAGS := "-s -w -X 'github.com/vaclav-dvorak/veribi-cli/cmd/veribi.version=$(VERSION)+$(GIT_REV)'"
+GOOS    ?= $(shell go env GOOS)
+GOARCH  ?= $(shell go env GOARCH)
+file    = veribi
+package := $(file)_$(GOOS)_$(GOARCH)
+ext     =
 
-ifeq ("$(goos)", "windows")
+ifeq ("$(GOOS)", "windows")
 	ext = .exe
 endif
 
@@ -30,7 +30,7 @@ build:  ## Builds the cli binary
 	go build -trimpath -ldflags=$(LDFLAGS) -o ./bin/$(file) main.go
 
 build-ci: ## Optimized build for CI
-	@echo $(goos)/$(goarch)
+	@echo $(GOOS)/$(GOARCH)
 	go build -trimpath -ldflags=$(LDFLAGS) -o ./$(file)$(ext) main.go
 	tar -czf $(package).tar.gz ./$(file)$(ext) ./LICENSE
 
