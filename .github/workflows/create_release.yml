@@ -19,7 +19,7 @@ jobs:
         uses: craicoverflow/install-git-chglog@v1
 
       - name: Generate a release notes
-        run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref}}
+        run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref_name}}
 
       - name: Create release
         id: create_release
