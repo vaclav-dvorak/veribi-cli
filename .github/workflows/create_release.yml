@@ -11,19 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goos: [linux, darwin]
-        goarch: [amd64]
-        # exclude:
-        #   - goarch: "386"
-        #   - goos: darwin
+        goos: [linux, darwin, windows]
+        goarch: ["386", amd64]
+        exclude:
+          - goarch: "386"
+          - goos: darwin
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: "1.18" # The Go version to download (if necessary) and use.
+          go-version: "1.18"
 
       - name: Build binary ${{ matrix.goos }}/${{ matrix.goarch }}
         env:
@@ -56,14 +58,10 @@ jobs:
       - name: Download binaries
         uses: actions/download-artifact@v3
 
-      - name: debug
-        run: ls -R
-
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          release_name: Release ${{ github.ref}}
+          name: Release ${{ github.ref}}
           body_path: ${{ github.workspace }}-CHANGELOG.md
           files: " binaries/*.tar.gz"
-          prerelease: true

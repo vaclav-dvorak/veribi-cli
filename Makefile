@@ -33,6 +33,16 @@ build-ci: ## Optimized build for CI
 	go build -trimpath -ldflags=$(LDFLAGS) -o ./$(file)$(ext) main.go
 	tar -czf $(package).tar.gz ./$(file)$(ext) ./LICENSE
 
+release: ## Release with a new tag. Use like this: 'VERSION=v0.0.1 make release'
+	git-chglog --next-tag $(VERSION) -o CHANGELOG.md
+	git add CHANGELOG.md
+	git commit -m "chore: update changelog for $(VERSION)"
+	git tag $(VERSION)
+	git push origin main $(VERSION)
+
+chglog: ## Generate CHANGELOG.md
+	@git-chglog -o CHANGELOG.md
+
 ## Test:
 coverage:  ## Run test coverage suite
 	@go test ./... -coverprofile=cov.out
