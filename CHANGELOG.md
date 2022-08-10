@@ -5,6 +5,10 @@
 
 ## [v0.0.4] - 2022-08-10
 
+### 📦 Added
+
+- Add sha256 checksums to release assets
+
 ### 💥 Changed
 
 - make changelog nicer
