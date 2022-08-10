@@ -35,8 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goos: [linux]
-        goarch: [amd64]
+        goos: [linux, darwin]
+        goarch: ["386", amd64]
+        exclude:
+          - goarch: "386"
+          - goos: darwin
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -55,3 +58,4 @@ jobs:
           build_command: "make build-ci"
           asset_name: "veribi-${{ matrix.goos }}-${{ matrix.goarch }}"
           extra_files: LICENSE
+          md5sum: false
