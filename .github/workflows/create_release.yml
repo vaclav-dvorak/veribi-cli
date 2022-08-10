@@ -8,7 +8,6 @@ on:
 jobs:
   release:
     name: Create new release
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,14 +19,11 @@ jobs:
         uses: craicoverflow/install-git-chglog@v1
 
       - name: Generate a release notes
-        run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref_name}}
+        run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref}}
 
       - name: Create release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref_name}}
-          release_name: Release ${{ github.ref_name}}
+          release_name: Release ${{ github.ref}}
           body_path: ${{ github.workspace }}-CHANGELOG.md
