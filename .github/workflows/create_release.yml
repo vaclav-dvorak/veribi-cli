@@ -12,10 +12,7 @@ jobs:
     strategy:
       matrix:
         goos: [linux, darwin, windows]
-        goarch: ["386", amd64]
-        exclude:
-          - goarch: "386"
-            goos: darwin
+        goarch: [amd64]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -62,6 +59,5 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          name: Release ${{ github.ref_name}}
           body_path: ${{ github.workspace }}-CHANGELOG.md
           files: " binaries/*.tar.gz"
