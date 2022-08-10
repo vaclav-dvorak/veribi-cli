@@ -13,6 +13,13 @@ options:
         - fix
         - refactor
   commit_groups:
+    sort_by: Custom
+    title_order:
+      - feat
+      - add
+      - change
+      - fix
+      - refactor
     title_maps:
       feat: Features
       add: Added
