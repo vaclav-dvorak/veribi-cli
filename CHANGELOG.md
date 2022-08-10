@@ -3,6 +3,12 @@
 
 ## [Unreleased]
 
+## [v0.0.4] - 2022-08-10
+
+### 💥 Changed
+
+- make changelog nicer
+
 ## [v0.0.3] - 2022-08-10
 
 ### 🎉 Features
@@ -48,7 +54,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.4...HEAD
+[v0.0.4]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.2...v0.0.3
 [v0.0.2]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.1...v0.0.2
 [v0.0.1]: https://github.com/vaclav-dvorak/veribi-cli/releases/tag/v0.0.1
