@@ -39,6 +39,7 @@ jobs:
 
   release:
     name: Create new release
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
