@@ -34,7 +34,7 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v2
         with:
-          name: artifact_${{ matrix.goos }}_${{ matrix.goarch }}
+          name: binaries
           path: veribi_${{ matrix.goos }}_${{ matrix.goarch }}.tar.gz
 
   release:
@@ -54,7 +54,7 @@ jobs:
         run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref_name}}
 
       - name: Download binaries
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
 
       - name: debug
         run: ls -R
@@ -65,5 +65,5 @@ jobs:
         with:
           release_name: Release ${{ github.ref}}
           body_path: ${{ github.workspace }}-CHANGELOG.md
-          files: "*.tar.gz"
+          files: " binaries/*.tar.gz"
           prerelease: true
