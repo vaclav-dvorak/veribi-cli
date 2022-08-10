@@ -30,11 +30,17 @@ jobs:
           GOARCH: ${{ matrix.goarch }}
         run: make build-ci
 
+      - name: Generate SHA256 checksum
+        run: |
+          SUM=$(sha256sum veribi_${{ matrix.goos }}_${{ matrix.goarch }}.tar.gz | cut -d ' ' -f 1)
+          echo ${SUM} > veribi_${{ matrix.goos }}_${{ matrix.goarch }}.sha256
       - name: Upload binary
         uses: actions/upload-artifact@v2
         with:
           name: binaries
-          path: veribi_${{ matrix.goos }}_${{ matrix.goarch }}.tar.gz
+          path: |
+            veribi_${{ matrix.goos }}_${{ matrix.goarch }}.tar.gz
+            veribi_${{ matrix.goos }}_${{ matrix.goarch }}.sha256
 
   release:
     name: Create new release
@@ -60,4 +66,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body_path: ${{ github.workspace }}-CHANGELOG.md
-          files: " binaries/*.tar.gz"
+          files: |
+            binaries/*.tar.gz
+            binaries/*.sha256
