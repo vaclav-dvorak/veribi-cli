@@ -26,9 +26,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           release_name: Release ${{ github.ref}}
-          body_path: ${{ github.workspace }}-CHANGELOG.md
-          draft: true
-          prerelease: false
+          # body_path: ${{ github.workspace }}-CHANGELOG.md
+          prerelease: true
+          generate_release_notes: true
 
   build:
     name: Build binaries for release
