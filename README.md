@@ -1,4 +1,4 @@
-# veribi-cli
+# Veribi CLI
 
 Command line interface for Veribi platform
 
