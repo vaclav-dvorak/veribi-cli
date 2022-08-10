@@ -1,0 +1,31 @@
+name: Build release binaries
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: build_to_release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux]
+        goarch: [amd64]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Build veribi binary
+        uses: wangyoucao577/go-release-action@v1.30
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          goos: ${{ matrix.goos }}
+          goarch: ${{ matrix.goarch }}
+          goversion: "1.18"
+          binary_name: "veribi"
+          build_command: "make build-ci"
+          asset_name: "veribi-${{ matrix.goos }}-${{ matrix.goarch }}"
+          extra_files: LICENSE

@@ -11,8 +11,7 @@ YELLOW := $(shell tput -Txterm setaf 3)
 CYAN   := $(shell tput -Txterm setaf 6)
 RESET  := $(shell tput -Txterm sgr0)
 
-.PHONY: default help release
-
+.PHONY: default
 default: help
 
 ## Build:
@@ -27,10 +26,7 @@ build:  ## Builds the cli binary
 
 build-ci: ## Optimized build for CI
 	@echo $(goos)/$(goarch)
-	go build -trimpath -ldflags=$(LDFLAGS) -o ./bin/$(file) main.go
-	@cp LICENSE bin/LICENSE
-	cd ./bin && tar -czf $(package).tar.gz ./$(file) ./LICENSE && cd ./..
-	@rm bin/LICENSE
+	go build -trimpath -ldflags=$(LDFLAGS) -o ./$(file) main.go
 
 ## Test:
 coverage:  ## Run test coverage suite
@@ -39,6 +35,7 @@ coverage:  ## Run test coverage suite
 	@rm cov.out
 
 ## Help:
+.PHONE: help
 help: ## Show this help.
 	@echo ''
 	@echo 'Usage:'
