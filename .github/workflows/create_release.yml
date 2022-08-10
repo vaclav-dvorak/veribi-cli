@@ -27,7 +27,8 @@ jobs:
         with:
           release_name: Release ${{ github.ref}}
           body_path: ${{ github.workspace }}-CHANGELOG.md
-          prerelease: true
+          draft: true
+          prerelease: false
 
   build:
     name: Build binaries for release
