@@ -12,5 +12,5 @@ Get the latest Veribi CLI release:
 Automatic install for Linux/macOS with curl. This script downloads the CLI and puts it in your `/usr/local/bin`
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/vaclav-dvorak/veribi-cli/master/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/vaclav-dvorak/veribi-cli/main/scripts/install.sh | sh
 ```
