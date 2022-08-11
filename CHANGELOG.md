@@ -8,6 +8,10 @@
 - New `update` command
 - New curl based install script
 
+### 📦 Added
+
+- Added JSON output to `version` command feat: `version` command now checks for latest version
+
 ## [v0.0.4] - 2022-08-10
 
 ### 📦 Added
