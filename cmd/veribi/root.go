@@ -9,21 +9,16 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	version = "v0.0.1 (sha) @ now"
-
-	rootCmd = &cobra.Command{
-		Use:     "veribi",
-		Version: version,
-		Short:   "veribi - a simple CLI to interact with Veribi platform",
-		Long: `veribi is a simple http envelope to interact with veribi platform
+var rootCmd = &cobra.Command{
+	Use:   "veribi",
+	Short: "veribi - a simple CLI to interact with Veribi platform",
+	Long: `veribi is a simple http envelope to interact with veribi platform
 
 User can interact with veribi directly from terminal`,
-		Run: func(cmd *cobra.Command, args []string) {
+	Run: func(cmd *cobra.Command, args []string) {
 
-		},
-	}
-)
+	},
+}
 
 // Execute - initialize and run cobra command
 func Execute() {

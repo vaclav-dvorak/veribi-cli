@@ -70,4 +70,4 @@ else
   mv "/tmp/veribi" "/usr/local/bin/veribi"
 fi
 echo
-echo "Completed installing $(veribi --version)"
+echo "Completed installing $(veribi version)"
