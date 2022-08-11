@@ -10,7 +10,7 @@
 
 ### 📦 Added
 
-- Added JSON output to `version` command feat: `version` command now checks for latest version
+- `version` command checks for latest version and have JSON output
 
 ## [v0.0.4] - 2022-08-10
 
