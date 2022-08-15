@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"sort"
 
+	"github.com/cheynewallace/tabby"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -25,9 +26,9 @@ var offersCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("key is expired or invalid. run veribi login")
 		}
-		fmt.Printf(" Scraping details of offers 00/%02d\x1b[3D", len(offers))
+		fmt.Print(" Scraping details of offers 0%", len(offers))
 		for i := 0; i < len(offers); i++ {
-			fmt.Printf("\x1b[2D%02d", i+1)
+			fmt.Printf("\x1b[3D%02d%%", ((i+1)*100)/len(offers))
 			offers[i], err = veribi.ScrapeOffer(offers[i])
 			if err != nil {
 				log.Fatal("key is expired or invalid. run veribi login")
@@ -41,10 +42,12 @@ var offersCmd = &cobra.Command{
 			})
 		}
 
-		fmt.Printf("| ID  | Price of TH | Hosting price | Title |\n")
+		t := tabby.New()
+		t.AddHeader("ID", "TH price ($/TH)", "Hosting price ($/day)", "Title")
 		for i := 0; i < len(offers); i++ {
-			fmt.Printf("| #%s | %6.2f $/TH | %7.2f $/day | %s\n", offers[i].ID, offers[i].ThsPrice, offers[i].HostPrice, offers[i].Title)
+			t.AddLine(offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), offers[i].Title)
 		}
+		t.Print()
 
 		// fmt.Println("TODO - implement this")
 	},
