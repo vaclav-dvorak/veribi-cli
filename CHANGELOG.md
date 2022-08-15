@@ -10,6 +10,7 @@
 
 ### 📦 Added
 
+- Added tabby for nicer table output
 - `version` command checks for latest version and have JSON output
 
 ## [v0.0.4] - 2022-08-10
