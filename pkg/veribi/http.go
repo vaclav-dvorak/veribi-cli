@@ -1,10 +1,8 @@
 package veribi
 
 import (
-	"errors"
 	"net/http"
-	"regexp"
-	"strconv"
+	"net/url"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -14,32 +12,8 @@ import (
 
 const host = "https://app.veribi.com/"
 
-// Offer is a struct holding information about current offer
-type Offer struct {
-	ID        string
-	Title     string
-	Kind      string
-	URL       string
-	Count     int
-	HostPrice float64
-	ThsPrice  float64
-}
-
-func scrapeURL(url string) *goquery.Document {
-	authCookie := &http.Cookie{
-		Name:  "PHPSESSID",
-		Value: viper.GetString("key"),
-		// Value:  "foo",
-		MaxAge: 3600,
-	}
-	req, err := http.NewRequest(http.MethodGet, url, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	req.AddCookie(authCookie)
-	req.Header.Set("User-Agent", "VeribiCLI - We read content because we don't have API")
-
-	res, err := http.DefaultClient.Do(req)
+func scrapeURL(uri string) *goquery.Document {
+	res, err := callAuthVeribi(uri)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,69 +32,56 @@ func scrapeURL(url string) *goquery.Document {
 	return doc
 }
 
-// ScrapeOffers return list of current offers
-func ScrapeOffers(incAuctions bool) (result []Offer, err error) {
-
-	doc := scrapeURL(host + "offers")
-	if doc.Find("title").Text() == "Login" { //! we have been redirected
-		err = errors.New("key expired")
+func pingVeribi() (res *http.Response, err error) {
+	req, err := http.NewRequest(http.MethodGet, host, nil)
+	if err != nil {
 		return
 	}
-	result = make([]Offer, 0)
+	req.Header.Set("User-Agent", "VeribiCLI - We read content because we don't have API")
 
-	// lv-openoff
-	// lv-auctions
-	// lv-futureoff
-
-	doc.Find(".itmboxin .of_title").Each(func(i int, s *goquery.Selection) {
-		href, _ := s.Find("a").Attr("href")
-		kind := "offer"
-		if strings.Contains(href, "auction") {
-			kind = "auction"
-		}
-		if incAuctions || kind != "auction" {
-			result = append(result, Offer{Title: s.Find("a").Text(), Kind: kind, URL: href})
-		}
-	})
+	res, err = http.DefaultClient.Do(req)
 
 	return
 }
 
-const thsPriceRegex string = `^Price per miner: \$[0-9,\.]* \(\$([0-9,\.]+)\/TH\)$`
-const hostPriceRegex string = `^Hosting per day for one miner: \$([0-9\.]+)$`
-const countRegex string = `^Miners: ([0-9]+) .*$`
+func authCookie() *http.Cookie {
+	return &http.Cookie{
+		Name:   "PHPSESSID",
+		Value:  viper.GetString("key"),
+		MaxAge: 3600,
+	}
+}
 
-// ScrapeOffer enrich Offer with additional data
-func ScrapeOffer(off Offer) (result Offer, err error) {
-
-	doc := scrapeURL(host + off.URL)
-	if doc.Find("title").Text() == "Login" { //! we have been redirected
-		err = errors.New("key expired")
+func callVeribi(uri string, payload url.Values) (res *http.Response, err error) {
+	req, err := http.NewRequest(http.MethodPost, host+uri, strings.NewReader(payload.Encode()))
+	if err != nil {
 		return
 	}
+	req.Header.Set("User-Agent", "VeribiCLI - We read content because we don't have API")
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.AddCookie(authCookie())
 
-	result = off
-	result.ID = strings.Split(off.URL, "=")[1]
+	// reqDump, err := httputil.DumpRequestOut(req, true)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	thsRe := regexp.MustCompile(thsPriceRegex)
-	hostRe := regexp.MustCompile(hostPriceRegex)
-	countRe := regexp.MustCompile(countRegex)
+	// fmt.Printf("REQUEST:\n%s", string(reqDump))
 
-	doc.Find(".pb-4 div").Each(func(i int, s *goquery.Selection) {
-		match1 := thsRe.FindStringSubmatch(s.Text())
-		if len(match1) != 0 {
-			result.ThsPrice, err = strconv.ParseFloat(match1[1], 64)
-		}
+	res, err = http.DefaultClient.Do(req)
 
-		match2 := countRe.FindStringSubmatch(s.Text())
-		if len(match2) != 0 {
-			result.Count, err = strconv.Atoi(match2[1])
-		}
+	return
+}
 
-		match3 := hostRe.FindStringSubmatch(s.Text())
-		if len(match3) != 0 {
-			result.HostPrice, err = strconv.ParseFloat(match3[1], 64)
-		}
-	})
+func callAuthVeribi(uri string) (res *http.Response, err error) {
+	req, err := http.NewRequest(http.MethodGet, host+uri, nil)
+	if err != nil {
+		return
+	}
+	req.AddCookie(authCookie())
+	req.Header.Set("User-Agent", "VeribiCLI - We read content because we don't have API")
+
+	res, err = http.DefaultClient.Do(req)
+
 	return
 }

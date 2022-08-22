@@ -6,6 +6,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"github.com/vaclav-dvorak/veribi-cli/pkg/veribi"
 )
 
 var loginCmd = &cobra.Command{
@@ -15,9 +16,12 @@ var loginCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Info("cmd login")
 		if viper.GetString("email") == "" || viper.GetString("pass") == "" {
-			log.Fatal("run veribi init before running this command")
+			log.Fatal("email or password is empty, run veribi init")
 		}
-		fmt.Println("TODO - implement this")
+		if err := veribi.Login(); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("🎉 Congratulations you've been loged in. 🎉")
 	},
 }
 
