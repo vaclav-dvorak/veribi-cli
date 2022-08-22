@@ -3,8 +3,11 @@
 
 ## [Unreleased]
 
+## [v0.1.0] - 2022-08-22
+
 ### 🎉 Features
 
+- Make `login` command functional
 - New `update` command
 - New curl based install script
 
@@ -68,7 +71,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.4...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.0...HEAD
+[v0.1.0]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.4...v0.1.0
 [v0.0.4]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.2...v0.0.3
 [v0.0.2]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.1...v0.0.2
