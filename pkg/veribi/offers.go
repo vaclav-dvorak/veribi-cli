@@ -23,7 +23,10 @@ type Offer struct {
 // ScrapeOffers return list of current offers
 func ScrapeOffers(incAuctions bool) (result []Offer, err error) {
 
-	doc := scrapeURL("offers")
+	doc, err := scrapeURL("offers")
+	if err != nil {
+		return
+	}
 	if doc.Find("title").Text() == "Login" { //! we have been redirected
 		err = errors.New("key expired")
 		return
@@ -55,7 +58,10 @@ const countRegex string = `^Miners: ([0-9]+) .*$`
 // ScrapeOffer enrich Offer with additional data
 func ScrapeOffer(off Offer) (result Offer, err error) {
 
-	doc := scrapeURL(off.URL)
+	doc, err := scrapeURL(off.URL)
+	if err != nil {
+		return
+	}
 	if doc.Find("title").Text() == "Login" { //! we have been redirected
 		err = errors.New("key expired")
 		return

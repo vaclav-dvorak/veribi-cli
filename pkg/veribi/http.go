@@ -12,10 +12,10 @@ import (
 
 const host = "https://app.veribi.com/"
 
-func scrapeURL(uri string) *goquery.Document {
+func scrapeURL(uri string) (doc *goquery.Document, err error) {
 	res, err := callAuthVeribi(uri)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 
 	defer func() {
@@ -24,12 +24,8 @@ func scrapeURL(uri string) *goquery.Document {
 		}
 	}()
 	// log.Infof("status: %d", res.StatusCode)
-	doc, err := goquery.NewDocumentFromReader(res.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return doc
+	doc, err = goquery.NewDocumentFromReader(res.Body)
+	return
 }
 
 func pingVeribi() (res *http.Response, err error) {

@@ -27,7 +27,7 @@ func refreshKey() (err error) {
 
 func handle2FA() (err error) {
 	prompt := promptui.Prompt{
-		Label: "2FA code",
+		Label: "Enter 2FA code",
 		Validate: func(input string) error {
 			if len(input) != 6 {
 				return errors.New("invalid value")
@@ -50,7 +50,7 @@ func handle2FA() (err error) {
 
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 
 	if doc.Find("title").Text() == "Two Phase Authentication" {
@@ -59,7 +59,7 @@ func handle2FA() (err error) {
 	return
 }
 
-// Login solves whole login process and return error if anything does go as planned
+// Login solves whole login process and return error if anything doesn't go as planned
 func Login() (err error) {
 	if err = refreshKey(); err != nil {
 		return
@@ -84,7 +84,7 @@ func Login() (err error) {
 
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 
 	switch title := doc.Find("title").Text(); title {
