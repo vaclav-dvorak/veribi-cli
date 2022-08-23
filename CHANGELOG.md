@@ -3,6 +3,14 @@
 
 ## [Unreleased]
 
+### 💥 Changed
+
+- Remove unused `update` command.
+
+### 🐞 Bug Fixes
+
+- Fix some typos and error handlings
+
 ## [v0.1.0] - 2022-08-22
 
 ### 🎉 Features
