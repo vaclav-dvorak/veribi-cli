@@ -14,3 +14,44 @@ Automatic install for Linux/macOS with curl. This script downloads the CLI and p
 ```sh
 curl -fsSL https://raw.githubusercontent.com/vaclav-dvorak/veribi-cli/main/scripts/install.sh | sh
 ```
+
+## 📖 Command overview
+
+| Command | Alias | Description |
+| --- | --- | --- |
+| `init` | `i` | Saves initial config values. |
+| `login` | `l` | Logs into Veribi platform and save token for further usage. |
+| `offers` | `o` | Lists all currently available offers. |
+| `version` | `v` | Outputs version of CLI and notify about possible update. |
+
+## `offers` command
+
+Lists all currently available offers.
+
+```bash
+veribi offers [flags]
+```
+
+### Options
+
+- `-t`, `--ths <bool>`
+
+  sort output table by THS/$ value
+
+- `-a`, `--add-auctions <bool>`
+
+  add auctions to the list of offers
+
+## `version` command
+
+Outputs version of CLI and notify about possible update.
+
+```bash
+veribi version [flags]
+```
+
+### Options
+
+- `-j`, `--json <bool>`
+
+  get output as JSON object
