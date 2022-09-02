@@ -3,6 +3,10 @@
 
 ## [Unreleased]
 
+### 📦 Added
+
+- Add health collumn to offers table
+
 ### 💥 Changed
 
 - Remove unused `update` command.
@@ -10,6 +14,10 @@
 ### 🐞 Bug Fixes
 
 - Fix some typos and error handlings
+
+### ♻ Code Refactoring
+
+- Migrate from `tabby` to `uitable`
 
 ## [v0.1.0] - 2022-08-22
 
