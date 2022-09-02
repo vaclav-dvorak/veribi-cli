@@ -1,3 +1,5 @@
+// Package veribi implements utility routines for manipulating information
+// from Veribi platform.
 package veribi
 
 import (
