@@ -1,12 +1,11 @@
-// Package veribi implements command line commands that are user inside Veribi CLI.
 package veribi
 
 import (
 	"fmt"
 	"sort"
 
-	"github.com/cheynewallace/tabby"
 	"github.com/fatih/color"
+	"github.com/gosuri/uitable"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -44,8 +43,12 @@ var offersCmd = &cobra.Command{
 			})
 		}
 
-		t := tabby.New()
-		t.AddHeader("ID", "TH price ($/TH)", "Hosting price ($/day)", "Health", "Title")
+		t := uitable.New()
+		t.MaxColWidth = 80
+
+		t.AddRow("ID", "TH price ($/TH)", "Hosting price ($/day)", "Health", "Title")
+		t.AddRow("--", "---------------", "---------------------", "------", "-----")
+
 		for i := 0; i < len(offers); i++ {
 			hpf, hp := getHealth(offers[i])
 			style := color.New(color.FgGreen).SprintFunc()
@@ -55,9 +58,9 @@ var offersCmd = &cobra.Command{
 			case hpf < 0.8:
 				style = color.New(color.FgYellow).SprintFunc()
 			}
-			t.AddLine(offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), style(fmt.Sprintf("%3.1d%%", hp)), offers[i].Title)
+			t.AddRow(offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), style(fmt.Sprintf("%3.1d%%", hp)), offers[i].Title)
 		}
-		t.Print()
+		fmt.Println(t)
 	},
 }
 
