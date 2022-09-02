@@ -1,3 +1,4 @@
+// Package veribi implements command line commands that are user inside Veribi CLI.
 package veribi
 
 import (

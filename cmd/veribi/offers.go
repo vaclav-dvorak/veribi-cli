@@ -1,3 +1,4 @@
+// Package veribi implements command line commands that are user inside Veribi CLI.
 package veribi
 
 import (
@@ -5,6 +6,7 @@ import (
 	"sort"
 
 	"github.com/cheynewallace/tabby"
+	"github.com/fatih/color"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -43,13 +45,19 @@ var offersCmd = &cobra.Command{
 		}
 
 		t := tabby.New()
-		t.AddHeader("ID", "TH price ($/TH)", "Hosting price ($/day)", "Title")
+		t.AddHeader("ID", "TH price ($/TH)", "Hosting price ($/day)", "Health", "Title")
 		for i := 0; i < len(offers); i++ {
-			t.AddLine(offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), offers[i].Title)
+			hpf, hp := getHealth(offers[i])
+			style := color.New(color.FgGreen).SprintFunc()
+			switch { // we will change color based on percent of miners online
+			case hpf < 0.1:
+				style = color.New(color.FgRed).SprintFunc()
+			case hpf < 0.8:
+				style = color.New(color.FgYellow).SprintFunc()
+			}
+			t.AddLine(offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), style(fmt.Sprintf("%3.1d%%", hp)), offers[i].Title)
 		}
 		t.Print()
-
-		// fmt.Println("TODO - implement this")
 	},
 }
 
@@ -57,4 +65,10 @@ func init() {
 	offersCmd.Flags().BoolVarP(&sortByThs, "ths", "t", false, "Sort by THS/$")
 	offersCmd.Flags().BoolVarP(&incAuctions, "add-auctions", "a", false, "Add auctions to the list")
 	rootCmd.AddCommand(offersCmd)
+}
+
+func getHealth(o veribi.Offer) (hpf float64, hpp int) {
+	hpf = (float64(o.Count) - float64(o.NotWorking)) / float64(o.Count)
+	hpp = int(hpf * 100)
+	return
 }
