@@ -3,8 +3,11 @@
 
 ## [Unreleased]
 
+## [v0.1.1] - 2022-09-26
+
 ### 📦 Added
 
+- Add ability to calculate TH price on auctions
 - Add health collumn to offers table
 
 ### 💥 Changed
@@ -87,7 +90,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.4...v0.1.0
 [v0.0.4]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.2...v0.0.3
