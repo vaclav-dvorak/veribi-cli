@@ -27,10 +27,15 @@ var offersCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("key is expired or invalid. run veribi login")
 		}
-		fmt.Print(" Scraping details of offers 0%", len(offers))
+		fmt.Print(" Scraping details of offers 0%%")
 		for i := 0; i < len(offers); i++ {
-			fmt.Printf("\x1b[3D%02d%%", ((i+1)*100)/len(offers))
-			offers[i], err = veribi.ScrapeOffer(offers[i])
+			fmt.Printf("\b\b\b%02d%%", ((i+1)*100)/len(offers))
+			if offers[i].Kind == "auction" {
+				offers[i], err = veribi.ScrapeAuction(offers[i])
+			} else {
+				offers[i], err = veribi.ScrapeOffer(offers[i])
+			}
+
 			if err != nil {
 				log.Fatal("key is expired or invalid. run veribi login")
 			}
@@ -46,8 +51,8 @@ var offersCmd = &cobra.Command{
 		t := uitable.New()
 		t.MaxColWidth = 80
 
-		t.AddRow("ID", "TH price ($/TH)", "Hosting price ($/day)", "Health", "Title")
-		t.AddRow("--", "---------------", "---------------------", "------", "-----")
+		t.AddRow("ℹ️", "ID", "TH price ($/TH)", "Hosting price ($/day)", "Health", "Title")
+		t.AddRow("", "--", "---------------", "---------------------", "------", "-----")
 
 		for i := 0; i < len(offers); i++ {
 			hpf, hp := getHealth(offers[i])
@@ -58,7 +63,11 @@ var offersCmd = &cobra.Command{
 			case hpf < 0.8:
 				style = color.New(color.FgYellow).SprintFunc()
 			}
-			t.AddRow(offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), style(fmt.Sprintf("%3.1d%%", hp)), offers[i].Title)
+			icon := "🫴"
+			if offers[i].Kind == "auction" {
+				icon = "💰"
+			}
+			t.AddRow(icon, offers[i].ID, fmt.Sprintf("%6.2f", offers[i].ThsPrice), fmt.Sprintf("%4.2f", offers[i].HostPrice), style(fmt.Sprintf("%3.1d%%", hp)), offers[i].Title)
 		}
 		fmt.Println(t)
 	},
@@ -71,6 +80,9 @@ func init() {
 }
 
 func getHealth(o veribi.Offer) (hpf float64, hpp int) {
+	if o.Count == 0 {
+		return
+	}
 	hpf = (float64(o.Count) - float64(o.NotWorking)) / float64(o.Count)
 	hpp = int(hpf * 100)
 	return
