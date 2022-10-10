@@ -30,12 +30,7 @@ var offersCmd = &cobra.Command{
 		fmt.Print(" Scraping details of offers 0%%")
 		for i := 0; i < len(offers); i++ {
 			fmt.Printf("\b\b\b%02d%%", ((i+1)*100)/len(offers))
-			if offers[i].Kind == "auction" {
-				offers[i], err = veribi.ScrapeAuction(offers[i])
-			} else {
-				offers[i], err = veribi.ScrapeOffer(offers[i])
-			}
-
+			offers[i], err = veribi.ScrapeOffer(offers[i])
 			if err != nil {
 				log.Fatal("key is expired or invalid. run veribi login")
 			}
