@@ -3,6 +3,16 @@
 
 ## [Unreleased]
 
+## [v0.1.2] - 2022-10-10
+
+### 🐞 Bug Fixes
+
+- Fix auction parsing regexp
+
+### ♻ Code Refactoring
+
+- Make use of new info available on acution pages
+
 ## [v0.1.1] - 2022-09-26
 
 ### 📦 Added
@@ -90,7 +100,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.2...HEAD
+[v0.1.2]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.4...v0.1.0
 [v0.0.4]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.3...v0.0.4
