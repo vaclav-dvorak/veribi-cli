@@ -122,7 +122,7 @@ func ScrapeAuction(off Offer) (result Offer, err error) {
 	result = off
 	result.ID = strings.Split(off.URL, "=")[1]
 
-	thsRe := regexp.MustCompile(`^([0-9\.]+)%.* ([0-9]+)x .* ([0-9]+) TH`)
+	thsRe := regexp.MustCompile(`^([0-9\.]+)%.* ([0-9]+)x .* ([0-9]+) ?TH`)
 	match := thsRe.FindStringSubmatch(off.Title)
 	offTHS := 0
 	bidPrice := 0.0
