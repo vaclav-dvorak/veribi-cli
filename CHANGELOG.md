@@ -3,6 +3,12 @@
 
 ## [Unreleased]
 
+## [v0.1.4] - 2023-03-03
+
+### 💥 Changed
+
+- Change go version to 1.19
+
 ## [v0.1.3] - 2023-03-03
 
 ### 📦 Added
@@ -110,7 +116,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.4...HEAD
+[v0.1.4]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.3...v0.1.4
 [v0.1.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.2...v0.1.3
 [v0.1.2]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.0...v0.1.1
