@@ -28,7 +28,7 @@ func main() {
 
 func printWelcome() {
 	for i := 0; i < len(logoSmall); i++ {
-		fmt.Printf("%s%s%s\n", blue, logoSmall[i], reset)
+		fmt.Printf("\n%s%s%s", blue, logoSmall[i], reset)
 	}
-	fmt.Println("")
+	fmt.Print("\n\n")
 }
