@@ -3,9 +3,15 @@
 
 ## [Unreleased]
 
+## [v0.1.3] - 2023-03-03
+
 ### 📦 Added
 
 - Add welcome logo
+
+### ♻ Code Refactoring
+
+- Update all dependencies
 
 ## [v0.1.2] - 2022-10-10
 
@@ -104,7 +110,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.3...HEAD
+[v0.1.3]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.2...v0.1.3
 [v0.1.2]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.0.4...v0.1.0
