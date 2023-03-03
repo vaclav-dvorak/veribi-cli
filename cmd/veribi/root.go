@@ -13,9 +13,9 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "veribi",
 	Short: "veribi - a simple CLI to interact with Veribi platform",
-	Long: `veribi is a simple http envelope to interact with veribi platform
+	Long: `veribi-cli is a simple http envelope to interact with Veribi platform
 
-User can interact with veribi directly from terminal`,
+User can interact with Veribi directly from terminal`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 	},
