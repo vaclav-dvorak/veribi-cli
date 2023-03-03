@@ -3,6 +3,10 @@
 
 ## [Unreleased]
 
+### 📦 Added
+
+- Add welcome logo
+
 ## [v0.1.2] - 2022-10-10
 
 ### 🐞 Bug Fixes
