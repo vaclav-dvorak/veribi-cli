@@ -3,6 +3,10 @@
 
 ## [Unreleased]
 
+### 🐞 Bug Fixes
+
+- Fix logo missalignment caused by newline
+
 ## [v0.1.4] - 2023-03-03
 
 ### 💥 Changed

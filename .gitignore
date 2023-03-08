@@ -16,3 +16,6 @@ vendor/
 
 # Build directory
 bin/
+
+# Environment variables
+.env
