@@ -7,6 +7,10 @@
 
 - Fix logo missalignment caused by newline
 
+### ♻ Code Refactoring
+
+- Migrate from make to go-task
+
 ## [v0.1.4] - 2023-03-03
 
 ### 💥 Changed
