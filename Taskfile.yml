@@ -41,6 +41,18 @@ tasks:
         sh: go env GOARCH
       PACKAGE: "{{.FILE}}_{{.GOOS}}_{{.GOARCH}}"
 
+  build:completion:
+    desc: Buids completion scripts
+    deps: [build]
+    cmds:
+      - defer: { task: clean }
+      - mkdir -p completion/bash completion/fish completion/zsh completion/ps
+      - ./bin/{{.FILE}} completion bash > completion/bash/veribi.bash
+      - ./bin/{{.FILE}} completion fish > completion/fish/veribi.fish
+      - ./bin/{{.FILE}} completion zsh > completion/zsh/_veribi
+      - ./bin/{{.FILE}} completion powershell > completion/ps/veribi.ps1
+      - echo "Completions scripts rebuild"
+
   release:
     desc: "Release with a new tag. Use like this: 'VERSION=v0.0.1 task release'"
     cmds:
@@ -66,3 +78,9 @@ tasks:
       - go test ./... -coverprofile=cov.out
       - defer: rm cov.out
       - go tool cover -html=cov.out
+
+  clean:
+    desc: Cleans temp files and folders
+    cmds:
+      - rm -rf bin/
+      - rm -f *.tag.gz
