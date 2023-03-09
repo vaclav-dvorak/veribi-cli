@@ -12,7 +12,16 @@ jobs:
     strategy:
       matrix:
         goos: [linux, darwin, windows]
-        goarch: [amd64]
+        goarch: [amd64, "386", arm64, arm]
+        exclude:
+          - goos: darwin
+            goarch: "386"
+          - goos: darwin
+            goarch: arm
+          - goos: windows
+            goarch: arm64
+          - goos: windows
+            goarch: arm
     steps:
       - name: Checkout
         uses: actions/checkout@v3

@@ -40,11 +40,11 @@ uname_os_check() {
 uname_arch_check() {
   arch=$(uname_arch)
   case "$arch" in
-    # 386) return 0 ;;
+    386) return 0 ;;
     amd64) return 0 ;;
-    # arm64) return 0 ;;
+    arm64) return 0 ;;
     # armv5) return 0 ;;
-    # armv6) return 0 ;;
+    armv6) return 0 ;;
     # armv7) return 0 ;;
   esac
   echo "Unsupported architecture '$(uname -m)'."
@@ -70,4 +70,4 @@ else
   mv "/tmp/veribi" "/usr/local/bin/veribi"
 fi
 echo
-echo "Completed installing $(veribi version)"
+echo "Completed installing $(veribi version -s)"
