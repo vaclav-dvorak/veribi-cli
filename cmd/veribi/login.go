@@ -15,6 +15,9 @@ var loginCmd = &cobra.Command{
 	Aliases: []string{"l"},
 	Short:   "Login into Veribi platform",
 	Run: func(cmd *cobra.Command, args []string) {
+		if !silent {
+			printLogo()
+		}
 		log.Info("cmd login")
 		if viper.GetString("email") == "" || viper.GetString("pass") == "" {
 			log.Fatal("email or password is empty, run veribi init")
@@ -22,7 +25,7 @@ var loginCmd = &cobra.Command{
 		if err := veribi.Login(); err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println("🎉 Congratulations you've been loged in. 🎉")
+		fmt.Println("🎉 Congratulations you've been logged in. 🎉")
 	},
 }
 

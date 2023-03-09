@@ -25,6 +25,9 @@ var (
 		Aliases: []string{"v"},
 		Short:   "Gets CLI version",
 		Run: func(cmd *cobra.Command, args []string) {
+			if !silent && !outputJSON {
+				printLogo()
+			}
 
 			latest := veribi.GetLatestVersion()
 

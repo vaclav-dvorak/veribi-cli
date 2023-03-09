@@ -19,6 +19,9 @@ var offersCmd = &cobra.Command{
 	Aliases: []string{"o"},
 	Short:   "List current offers from Veribi platform",
 	Run: func(cmd *cobra.Command, args []string) {
+		if !silent {
+			printLogo()
+		}
 		log.Info("cmd offers")
 		if viper.GetString("key") == "" {
 			log.Fatal("run veribi login before running this command")

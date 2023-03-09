@@ -18,6 +18,9 @@ var initCmd = &cobra.Command{
 	Aliases: []string{"i"},
 	Short:   "Initialize Veribi CLI",
 	Run: func(cmd *cobra.Command, args []string) {
+		if !silent {
+			printLogo()
+		}
 		log.Info("cmd init")
 
 		validateEmail := func(input string) error {
