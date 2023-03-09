@@ -60,7 +60,7 @@ url="https://github.com/vaclav-dvorak/veribi-cli/releases/latest/download"
 echo "Downloading latest release of ${name}..."
 curl -sL ${url}/$tar -o "/tmp/$tar" || exit 1
 tar xzf "/tmp/${tar}" -C /tmp
-rm "/tmp/$tar" "/tmp/LICENSE"
+rm "/tmp/$tar" "/tmp/LICENSE" "/tmp/completion"
 chmod +x "/tmp/veribi"
 
 echo "Moving /tmp/veribi to /usr/local/bin/veribi (you might be asked for your password due to sudo)"

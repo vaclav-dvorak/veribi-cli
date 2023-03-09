@@ -33,7 +33,7 @@ tasks:
     cmds:
       - echo {{.GOOS}}/{{.GOARCH}}
       - go build -trimpath -ldflags="{{.LDFLAGS}}" -o ./{{.FILE}}{{.exeExt}} main.go
-      - tar -czf {{.PACKAGE}}.tar.gz ./{{.FILE}}{{.exeExt}} ./LICENSE
+      - tar -czf {{.PACKAGE}}.tar.gz ./{{.FILE}}{{.exeExt}} ./LICENSE ./completion
     vars:
       GOOS:
         sh: go env GOOS
