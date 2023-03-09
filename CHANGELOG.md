@@ -3,6 +3,12 @@
 
 ## [Unreleased]
 
+## [v0.1.7] - 2023-03-09
+
+### ♻ Code Refactoring
+
+- remove support for 32bit
+
 ## [v0.1.6] - 2023-03-09
 
 ### 🎉 Features
@@ -137,7 +143,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.6...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.7...HEAD
+[v0.1.7]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.6...v0.1.7
 [v0.1.6]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.4...v0.1.5
 [v0.1.4]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.3...v0.1.4
