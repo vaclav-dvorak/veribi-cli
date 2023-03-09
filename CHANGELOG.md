@@ -3,6 +3,11 @@
 
 ## [Unreleased]
 
+### 🎉 Features
+
+- Make logo hidden with silent flag
+- New completion scripts for bash, fish, zsh and powershell
+
 ### 🐞 Bug Fixes
 
 - Fix logo missalignment caused by newline
