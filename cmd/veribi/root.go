@@ -21,9 +21,16 @@ User can interact with Veribi directly from terminal`,
 	},
 }
 
+var (
+	// verbose bool
+	silent bool
+)
+
 // Execute - initialize and run cobra command
 func Execute() {
 	cobra.OnInitialize(initConfig)
+	// rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose output")
+	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silent output")
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalf("Whoops. There was an error while executing your CLI '%s'", err)
 	}
