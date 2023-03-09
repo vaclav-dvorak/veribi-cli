@@ -80,3 +80,15 @@ jobs:
           files: |
             binaries/*.tar.gz
             binaries/*.sha256
+
+  homebrew:
+    name: Update Homebrew
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update Homebrew formula
+      uses: dawidd6/action-homebrew-bump-formula@v3
+      with:
+        token: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
+        tap: vaclav-dvorak/tap
+        formula: veribi-cli
