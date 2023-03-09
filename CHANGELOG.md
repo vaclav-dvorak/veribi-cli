@@ -3,6 +3,16 @@
 
 ## [Unreleased]
 
+## [v0.1.8] - 2023-03-09
+
+### 🎉 Features
+
+- Update homebrew formula automatically
+
+### 📦 Added
+
+- Add linux/arm to release
+
 ## [v0.1.7] - 2023-03-09
 
 ### ♻ Code Refactoring
@@ -143,7 +153,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.7...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.8...HEAD
+[v0.1.8]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.7...v0.1.8
 [v0.1.7]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.6...v0.1.7
 [v0.1.6]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.4...v0.1.5
