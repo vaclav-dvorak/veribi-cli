@@ -6,6 +6,9 @@ silent: true
 
 dotenv: [".env"]
 
+env:
+  CGO_ENABLED: '0'
+
 vars:
   GIT_REV:
     sh: git rev-parse --short HEAD
