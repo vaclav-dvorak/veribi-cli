@@ -15,6 +15,15 @@ Automatic install for Linux/macOS with curl. This script downloads the CLI and p
 curl -fsSL https://raw.githubusercontent.com/vaclav-dvorak/veribi-cli/main/scripts/install.sh | sh
 ```
 
+### 🍺 Homebrew
+
+You can use our private tap to install cli via homebrew.
+
+```sh
+brew tap vaclav-dvorak/tap
+brew install veribi-cli
+```
+
 ## 📖 Command overview
 
 | Command | Alias | Description |
