@@ -56,7 +56,7 @@ func ScrapeOffers(incAuctions bool) (result []Offer, err error) {
 	return
 }
 
-const thsPriceRegex string = `^Price per miner: \$[0-9,\.]* \(\$([0-9,\.]+)\/TH\)$`
+const thsPriceRegex string = `^Price per miner: \$[0-9,\.]*.*Price \$([0-9,\.]+)\/TH$`
 const hostPriceRegex string = `^Hosting per day for one miner: \$([0-9\.]+)$`
 const countRegex string = `^Miners: ([0-9]+).*$`
 const notWorkingRegex string = `^\(([0-9]+) miners currently not working\)$`
