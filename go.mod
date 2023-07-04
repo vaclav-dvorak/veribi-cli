@@ -6,7 +6,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/coreos/go-semver v0.3.1
 	github.com/fatih/color v1.15.0
-	github.com/gosuri/uitable v0.0.4
+	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/manifoldco/promptui v0.9.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.7.0
