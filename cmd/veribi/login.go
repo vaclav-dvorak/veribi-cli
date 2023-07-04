@@ -18,7 +18,6 @@ var loginCmd = &cobra.Command{
 		if !silent {
 			printLogo()
 		}
-		log.Info("cmd login")
 		if viper.GetString("email") == "" || viper.GetString("pass") == "" {
 			log.Fatal("email or password is empty, run veribi init")
 		}

@@ -22,7 +22,6 @@ var offersCmd = &cobra.Command{
 		if !silent {
 			printLogo()
 		}
-		log.Info("cmd offers")
 		if viper.GetString("key") == "" {
 			log.Fatal("run veribi login before running this command")
 		}
