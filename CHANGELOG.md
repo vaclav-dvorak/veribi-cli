@@ -3,6 +3,17 @@
 
 ## [Unreleased]
 
+## [v0.1.11] - 2023-07-04
+
+### 🎉 Features
+
+- Update completion scripts
+- Use go-pretty table instead of uitable
+
+### 🐞 Bug Fixes
+
+- Fix regexp so ths is parsed correctly on offers
+
 ## [v0.1.10] - 2023-03-12
 
 ### ♻ Code Refactoring
@@ -165,7 +176,8 @@
 ## [v0.0.1] - 2022-08-08
 
 
-[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.10...HEAD
+[Unreleased]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.11...HEAD
+[v0.1.11]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.10...v0.1.11
 [v0.1.10]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.9...v0.1.10
 [v0.1.9]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.8...v0.1.9
 [v0.1.8]: https://github.com/vaclav-dvorak/veribi-cli/compare/v0.1.7...v0.1.8
