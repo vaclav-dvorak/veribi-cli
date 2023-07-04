@@ -21,8 +21,6 @@ var initCmd = &cobra.Command{
 		if !silent {
 			printLogo()
 		}
-		log.Info("cmd init")
-
 		validateEmail := func(input string) error {
 			_, err := mail.ParseAddress(input)
 			if err != nil {
