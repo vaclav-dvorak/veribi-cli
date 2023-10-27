@@ -32,7 +32,7 @@ func Execute() {
 	// rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose output")
 	rootCmd.PersistentFlags().BoolVarP(&silent, "silent", "s", false, "silent output")
 	if err := rootCmd.Execute(); err != nil {
-		log.Fatalf("Whoops. There was an error while executing your CLI '%s'", err)
+		log.Fatal("Whoops. There was an error while executing your CLI")
 	}
 }
 
