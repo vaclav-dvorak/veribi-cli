@@ -5,6 +5,10 @@
 
 ## [v0.1.12] - 2024-03-29
 
+### 💥 Changed
+
+- change go version to 1.22
+
 ### 🐞 Bug Fixes
 
 - Fix detection of TH/s
