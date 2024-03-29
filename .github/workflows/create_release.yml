@@ -22,17 +22,17 @@ jobs:
             goarch: arm
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
           go-version: "1.22"
 
       - name: Install Task
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v2
 
       - name: Build binary ${{ matrix.goos }}/${{ matrix.goarch }}
         env:
@@ -46,7 +46,7 @@ jobs:
           echo ${SUM} > veribi_${{ matrix.goos }}_${{ matrix.goarch }}.sha256
 
       - name: Upload binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: binaries
           path: |
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -70,11 +70,11 @@ jobs:
         run: git-chglog -t .chglog/RELEASE.tpl.md -o ${{ github.workspace }}-CHANGELOG.md ${{ github.ref_name}}
 
       - name: Download binaries
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Create release
         id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           body_path: ${{ github.workspace }}-CHANGELOG.md
           files: |
