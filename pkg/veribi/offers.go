@@ -40,7 +40,7 @@ func ScrapeOffers(incAuctions bool) (result []Offer, err error) {
 	// lv-auctions
 	// lv-futureoff
 
-	doc.Find(".itmboxin .of_title").Each(func(i int, s *goquery.Selection) {
+	doc.Find(".itmboxin .of_title").Each(func(_ int, s *goquery.Selection) {
 		href, _ := s.Find("a").Attr("href")
 		kind := "offer"
 		if strings.Contains(href, "auction") {
@@ -56,9 +56,9 @@ func ScrapeOffers(incAuctions bool) (result []Offer, err error) {
 	return
 }
 
-const thsPriceRegex string = `^Price per miner: \$[0-9,\.]*.*Price \$([0-9,\.]+)\/TH$`
+const thsPriceRegex string = `^Average price per miner: \$[0-9,\.]*.*Price \$([0-9,\.]+)\/TH$`
 const hostPriceRegex string = `^Hosting per day for one miner: \$([0-9\.]+)$`
-const countRegex string = `^Miners: ([0-9]+).*$`
+const countRegex string = `^Miners on this offer:: ([0-9]+).*$`
 const notWorkingRegex string = `^\(([0-9]+) miners currently not working\)$`
 
 // ScrapeOffer enrich Offer with additional data
@@ -80,7 +80,7 @@ func ScrapeOffer(off Offer) (result Offer, err error) {
 	countRe := regexp.MustCompile(countRegex)
 	nwRe := regexp.MustCompile(notWorkingRegex)
 
-	doc.Find(".pb-4 div").Each(func(i int, s *goquery.Selection) {
+	doc.Find(".pb-4 div").Each(func(_ int, s *goquery.Selection) {
 		match := thsRe.FindStringSubmatch(s.Text())
 		if len(match) != 0 {
 			result.ThsPrice, err = strconv.ParseFloat(match[1], 64)
@@ -98,7 +98,7 @@ func ScrapeOffer(off Offer) (result Offer, err error) {
 	})
 
 	result.NotWorking = 0
-	doc.Find(".tg_miners_nw").Each(func(i int, s *goquery.Selection) {
+	doc.Find(".tg_miners_nw").Each(func(_ int, s *goquery.Selection) {
 		match := nwRe.FindStringSubmatch(s.Text())
 		if len(match) != 0 {
 			result.NotWorking, err = strconv.Atoi(match[1])

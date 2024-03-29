@@ -20,7 +20,7 @@ var offersCmd = &cobra.Command{
 	Use:     "offers",
 	Aliases: []string{"o"},
 	Short:   "List current offers from Veribi platform",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		if !silent {
 			printLogo()
 		}

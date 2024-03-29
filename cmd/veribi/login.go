@@ -14,7 +14,7 @@ var loginCmd = &cobra.Command{
 	Use:     "login",
 	Aliases: []string{"l"},
 	Short:   "Login into Veribi platform",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		if !silent {
 			printLogo()
 		}

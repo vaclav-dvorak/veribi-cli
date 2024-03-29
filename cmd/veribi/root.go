@@ -16,7 +16,7 @@ var rootCmd = &cobra.Command{
 	Long: `veribi-cli is a simple http envelope to interact with Veribi platform
 
 User can interact with Veribi directly from terminal`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 
 	},
 }
