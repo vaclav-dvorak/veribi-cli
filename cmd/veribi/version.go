@@ -24,7 +24,7 @@ var (
 		Use:     "version",
 		Aliases: []string{"v"},
 		Short:   "Gets CLI version",
-		Run: func(cmd *cobra.Command, args []string) {
+		Run: func(_ *cobra.Command, _ []string) {
 			if !silent && !outputJSON {
 				printLogo()
 			}
